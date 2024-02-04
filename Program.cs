@@ -11,6 +11,14 @@ namespace PizzaPlaceYude
 			// Add services to the container.
 			builder.Services.AddRazorComponents();
 
+			//leer la connection string
+			var ConStr = builder.Configuration.GetConnectionString("ConStr");
+
+			//inyectar services
+			builder.Services.AddScoped<ClienteServices>();
+			builder.Services.AddScoped<PizzaServices>();
+			builder.Services.AddScoped<CestaServices>();
+
 			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
@@ -26,7 +34,7 @@ namespace PizzaPlaceYude
 			app.UseStaticFiles();
 			app.UseAntiforgery();
 
-			app.MapRazorComponents<App>();
+			app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
 			app.Run();
 		}

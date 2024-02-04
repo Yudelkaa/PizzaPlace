@@ -1,12 +1,13 @@
-﻿using System.Data.Common;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 namespace PizzaPlaceYude.DAL
 {
 	public class Context : DbContext
 	{
-		public Contexto(DbContextOption<Contexto>Option) : base(Options) { }
-		public DbSet<Cliente>(get;set;)
-		public DbSet<Pizza>(get;set;)
-		public DbSet<Cesta>(get;set;)
+		public Context(DbContextOption<Context>Option) : base(Options) { }
+		public DbSet<Cliente> Cliente { get; set; }
+		public DbSet<Pizza> Pizza { get; set; }
+		public DbSet<Cesta> Cesta { get; set; }
 	}
 }
