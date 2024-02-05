@@ -17,7 +17,7 @@
         <div class="col">
             <button class="btn btn-success pl-4 pr-4"
                     @onclick="@(() => AgregarAlCarrito(pizza))">
-                Add
+                Añadir
             </button>
         </div>
     </div>
@@ -40,7 +40,7 @@
             <div class="col">
                 <button class="btn btn-danger"
                         @onclick="@(() => EliminarDelCarrito(pos))">
-                    Remove
+                    Eliminar
                 </button>
             </div>
         </div>
@@ -56,6 +56,7 @@
 
 <h1>Ingresa los detalles</h1>
 <EditForm Model="@estado.Cesta.ClienteOrden" OnValidSubmit="PlaceOrder">
+    <PageTitle>Pizza Place</PageTitle>
     <DataAnnotationsValidator />
     <ValidationSummary />
     <fieldset>
@@ -104,7 +105,7 @@
         estado.Menu.Add(new Pizza(3, "Diabolo", 9.99M, Picantes.ExtraPicante));
     }
 
-    private string ImagenPicante(Picantes picantes) => $"images/{picantes.ToString().ToLower()}.jpeg";
+    private string ImagenPicante(Picantes picantes) => $"images/{picantes.ToString().ToLower()}.jpg";
 
     private void AgregarAlCarrito(Pizza pizza) => estado.Cesta.Agregar(pizza.Id);
     private void EliminarDelCarrito(int pos) => estado.Cesta.Eliminar(pos);
