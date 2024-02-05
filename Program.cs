@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using PizzaPlaceYude.DAL;
 using PizzaPlaceYude.Components;
+using PizzaPlaceYude.Services;
 
 namespace PizzaPlaceYude
 {
@@ -9,15 +12,17 @@ namespace PizzaPlaceYude
 			var builder = WebApplication.CreateBuilder(args);
 
 			// Add services to the container.
-			builder.Services.AddRazorComponents();
+			builder.Services.AddRazorComponents()
+				.AddInteractiveServerComponents();
 
 			//leer la connection string
 			var ConStr = builder.Configuration.GetConnectionString("ConStr");
 
+			builder.Services.AddDbContext<Context>(Options => Options.UseSqlite(ConStr));
+
 			//inyectar services
-			builder.Services.AddScoped<ClienteServices>();
-			builder.Services.AddScoped<PizzaServices>();
-			builder.Services.AddScoped<CestaServices>();
+			builder.Services.AddScoped<MenuService>();
+		
 
 			var app = builder.Build();
 

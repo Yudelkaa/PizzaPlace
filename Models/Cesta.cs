@@ -1,4 +1,5 @@
 ﻿using PizzaPlaceYude.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace PizzaPlaceYude.Models
 {
@@ -7,5 +8,8 @@ namespace PizzaPlaceYude.Models
 		public Cliente? ClienteOrden { get; set; } = new Cliente();
 		public List<int> Ordenes { get; set; } = new List<int>();
 		public bool HasPaid { get; set; }
+		public void Agregar(int pizzaId) => Ordenes.Add(pizzaId);
+
+		public void Eliminar(int pos) => Ordenes.RemoveAt(pos);
 	}
 }
